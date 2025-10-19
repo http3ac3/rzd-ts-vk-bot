@@ -1,0 +1,46 @@
+@startuml
+skinparam linetype ortho
+
+entity request {
+* request_id : INT
+--
+* min_lead_time : DATETIME
+* max_lead_time : DATETIME
+* description : TEXT
+* execution_start_time : DATETIME
+  execution_end_time : DATETIME
+}
+
+entity problem {
+* problem_id : INT
+--
+* description : TEXT
+* category_id : INT
+}
+
+entity problem_category {
+* problem_category_id : INT
+--
+* name : TEXT
+}
+
+entity solution {
+* solution_id : INT
+--
+* name : TEXT
+* description : TEXT
+* problem_id : INT
+}
+
+entity request_problem {
+* request_problem_id : INT
+--
+* request_id : INT
+* problem_id : INT
+}
+
+request ||--o{ request_problem
+problem ||--o{ request_problem
+problem_category ||--o{ problem
+problem ||--o{ solution
+@enduml
